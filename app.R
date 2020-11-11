@@ -16,7 +16,7 @@ library(AzureGraph)
 # gr <- create_graph_login()
 # my user information
 # me <- gr$get_user("me")
-# save(me$token, file = "token.RData")
+# save(me, file = "token.RData")
 
 # https://docs.microsoft.com/en-us/graph/api/resources/onedrive?view=graph-rest-1.0
 # https://developer.microsoft.com/en-us/graph/graph-explorer
@@ -38,7 +38,7 @@ ui <- fluidPage(
 
 # Define server logic required to draw a histogram
 server <- function(input, output) {
-    res <- call_graph_url(graph_token, url = "https://graph.microsoft.com/v1.0/me")
+    res <- call_graph_url(me$token, url = "https://graph.microsoft.com/v1.0/me")
     output$sampleQuery <- renderText({
         jsonlite::toJSON(res, pretty = TRUE)
     })
